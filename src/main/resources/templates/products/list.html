@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Products</title>
+</head>
+<body>
+<table>
+    <thead>
+        <th>Title</th>
+        <th>Number Of Page</th>
+        <th>Release Date</th>
+        <th>Prices</th>
+        <th>Details</th>
+    </thead>
+    <tbody>
+        <tr th:each="product:${products}">
+            <td th:text="${product.title}"></td>
+            <td th:text="${product.numberOfPages}"></td>
+            <td th:text="${{product.releaseDate}}"></td>
+            <td>
+                 <ul>
+                     <li th:each="price : ${product.prices}" th:text="${price.bookType} + '-' + ${{price.value}}"></li>
+                 </ul>
+            </td>
+            <td>
+                <a th:href="@{/products/id/{productId}(productId=${product.id})}">Detail</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+</body>
+</html>
